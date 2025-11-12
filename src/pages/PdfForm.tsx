@@ -1,6 +1,7 @@
 import { Button, Card, Form, Input, message, Upload } from "antd";
 import React, { useState } from 'react'
 import { TiUploadOutline } from "react-icons/ti";
+import { generateFinalPDF } from "../utils/PdfGenerator";
 
 
 interface FormValues {
@@ -29,7 +30,8 @@ const PdfForm: React.FC = () => {
 
     setLoading(true);
     try {
-      
+      await generateFinalPDF(values, file);
+      message.success("PDF generated successfully");
       
     } catch (error) {
       console.error(error);
