@@ -1,10 +1,23 @@
-import './App.css'
+import React from 'react'
+import DashboardLayout from './pages/DashboardLayout'
+import PdfForm from './pages/PdfForm'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
 
-function App() {
-  
-
+const App: React.FC = () => {
   return (
-   <div className='bg-amber-300'>akshar</div>
+    
+      <Routes>
+        <Route path="/" element={<DashboardLayout />} >
+          <Route index element={<Dashboard />} />
+          <Route path="pdf" element={<PdfForm />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="settings" element={<div>Settings</div>} />
+
+        </Route>
+        
+      </Routes>
+    
   )
 }
 
