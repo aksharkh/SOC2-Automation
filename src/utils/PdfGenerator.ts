@@ -351,18 +351,16 @@ interface FormData {
 // --- Helper functions ---
 
 const addHeader = (doc: jsPDF) => {
-  doc.setFont("helvetica", "bold");
+  doc.setFont("Quan Rounded SemiLight", "normal");
   doc.setFontSize(10);
-  doc.text("REACH ISO", 15, 15);
-  doc.line(15, 17, 195, 17);
+  doc.text("REACH ISO", 190, 10, { align: "right"});
 };
 
 const addFooter = (doc: jsPDF, pageNum: number) => {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
-  doc.text("www.reachiso.com", 15, 285);
-  doc.text("Confidential", 105, 285, { align: "center" });
-  doc.text(`${pageNum}`, 195, 285, { align: "right" });
+  doc.text("www.reachiso.com", 10, 285);
+  doc.text(`${pageNum}`, 200, 285, { align: "right" });
 };
 
 const addNewPage = (doc: jsPDF, pageNum: number) => {
@@ -457,11 +455,14 @@ export const generateFinalPDF = async (
   doc.text("Confidential", 195, 285, { align: "right" });
 
   // --- PAGE 2: TOC ---
-  pageNum = addNewPage(doc, pageNum);
+  doc.addPage();
+  doc.setFont("Quan Rounded SemiLight", "normal");
+  doc.setFontSize(14);
+  doc.text("REACH ISO", 17, 15);
   currentY = 40;
-  doc.setFont("helvetica", "bold");
+  doc.setFont("helvetica", "normal");
   doc.setFontSize(16);
-  doc.text("TABLE OF CONTENTS", 105, currentY, { align: "center" });
+  doc.text("TABLE OF CONTENTS", 17, currentY, { align: "left" });
   currentY += 20;
 
   autoTable(doc, {
@@ -482,13 +483,18 @@ export const generateFinalPDF = async (
       1: { cellWidth: 20, halign: "right" },
     },
   });
+  doc.setFontSize(10);
+  doc.text("www.reachiso.com", 17, 285);
+  doc.setFont("helvetica", "normal");
+  doc.text("Confidential", 195, 285, { align: "right" });
 
   // --- PAGE 3–7: Sample content pages ---
   pageNum = addNewPage(doc, pageNum);
-  doc.setFont("helvetica", "bold");
+  doc.setFont("helvetica", "normal");
   doc.setFontSize(16);
-  doc.text("SECTION 1", 105, 140, { align: "center" });
-  doc.text("INDEPENDENT SERVICE AUDITOR'S REPORT", 105, 148, { align: "center" });
+  doc.text("SECTION 1", 17, 100, { align: "left" });
+  doc.setFont("helvetica", "light");
+  doc.text("INDEPENDENT SERVICE AUDITOR'S REPORT", 17, 118, { align: "left" });
 
   pageNum = addNewPage(doc, pageNum);
   currentY = 40;
@@ -497,16 +503,18 @@ export const generateFinalPDF = async (
   currentY = addWrappedText(doc, `To\n${organization}`, { y: currentY });
 
   pageNum = addNewPage(doc, pageNum);
-  doc.setFont("helvetica", "bold");
+  doc.setFont("helvetica", "normal");
   doc.setFontSize(16);
-  doc.text("SECTION 2", 105, 140, { align: "center" });
-  doc.text("MANAGEMENT'S ASSERTION", 105, 148, { align: "center" });
+  doc.text("SECTION 2", 17, 100, { align: "left" });
+    doc.setFont("helvetica", "light");
+  doc.text("MANAGEMENT'S ASSERTION", 17, 118, { align: "left" });
 
   pageNum = addNewPage(doc, pageNum);
-  doc.setFont("helvetica", "bold");
+  doc.setFont("helvetica", "normal");
   doc.setFontSize(16);
-  doc.text("SECTION 3", 105, 140, { align: "center" });
-  doc.text("DESCRIPTION OF THE SYSTEM", 105, 148, { align: "center" });
+  doc.text("SECTION 3", 17, 100, { align: "left" });
+  doc.setFont("helvetica", "light");
+  doc.text("DESCRIPTION OF THE SYSTEM", 17, 118, { align: "left" });
 
   // --- Save generated portion ---
   const generatedBuffer = doc.output("arraybuffer");
