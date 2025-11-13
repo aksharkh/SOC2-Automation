@@ -9,10 +9,8 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ collapsed, setCollapsed }) => {
     return (
-        // This fragment's children are placed directly into the Header's
-        // flexbox in DashboardLayout.
+        
         <>
-            {/* This div contains the toggle and app name, as you wanted */}
             <div className="flex items-center space-x-3">
                 <Button
                     type="text"
@@ -25,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ collapsed, setCollapsed }) => {
                 </h1>
             </div>
 
-            {/* This div is pushed to the right by "justify-between" */}
+           
             <div className="text-gray-600 text-sm font-medium">
                 Hello, akshar
             </div>

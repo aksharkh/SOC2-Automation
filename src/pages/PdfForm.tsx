@@ -17,6 +17,12 @@ const PdfForm: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [form] = Form.useForm<FormValues>();
 
+  const [formData, seFormData] = useState({
+    organization: "Blue Santos Technologies",
+    scope: "Cloud Security Services",
+    observationPeriod: "Jan–Dec 2025",
+  })
+
   const beforeUpload = (file: File) => {
     setFile(file);
     return false;
@@ -30,7 +36,7 @@ const PdfForm: React.FC = () => {
 
     setLoading(true);
     try {
-      await generateFinalPDF(values, file);
+      await generateFinalPDF(formData, file);
       message.success("PDF generated successfully");
       
     } catch (error) {

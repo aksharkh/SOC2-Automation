@@ -4,6 +4,7 @@ import PdfForm from './pages/PdfForm'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Settings from "./pages/Settings"
+import PreviewPage from "./pages/PreviewPage"
 
 const App: React.FC = () => {
   return (
@@ -14,7 +15,7 @@ const App: React.FC = () => {
           <Route path="pdf" element={<PdfForm />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="settings" element={<Settings />} />
-
+          <Route path="preview" element={<PreviewPage />} />
         </Route>
         
       </Routes>
